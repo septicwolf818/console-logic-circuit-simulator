@@ -11,7 +11,7 @@ To start simulator open [pylogic.py](pylogic.py) file with python >=3.7
 
 Method called at the end of file triggers main simulator loop.
 ```python
-dm = DeviceManager()
-dm.start()
+DM = DeviceManager()
+DM.start()
 ```
 
