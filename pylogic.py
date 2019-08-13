@@ -1,213 +1,23 @@
-class DeviceManager:
-    'Device/circuit manager'
-
-    def __init__(self):
-        print("Device manager created")
-        self.devices = []
-        self.id = 0
-
-    def getOutput(self, id):
-        device_type = ""
-        for device in self.devices:
-            if(device.id == id):
-                device_type = device.getDeviceType()
-                if(device_type == "Lever"):
-                    return device.output()
-                elif(device_type == "Not"):
-                    device.setState(self.getOutput(device.attached_id))
-                    return device.output()
-                elif(device_type == "And"):
-                    device.setA(self.getOutput(device.a_attached_id))
-                    device.setB(self.getOutput(device.b_attached_id))
-                    return device.output()
-                elif(device_type == "Or"):
-                    device.setA(self.getOutput(device.a_attached_id))
-                    device.setB(self.getOutput(device.b_attached_id))
-                    return devive.output()
-        return 0
-
-    def start(self):
-        print("Device manager started")
-        while(True):
-            print()
-            print("1. Add device")
-            print("2. Manage device")
-            print("3. Show devices")
-            print("4. Run circuit")
-            print("5. Quit")
-            print("OPTION: ", end="")
-            userinput = input()
-            if(userinput == '1'):
-                print()
-                print("ADD DEVICE:")
-                print("1. Input")
-                print("2. Not gate")
-                print("3. And gate")
-                print("4. Or gate")
-                print("5. Output")
-                print("6. Cancel")
-                print("OPTION: ", end="")
-                userinput = input()
-                if(userinput == "1"):
-                    self.addDevice(Lever())
-                elif(userinput == "2"):
-                    self.addDevice(Not())
-                elif(userinput == "3"):
-                    self.addDevice(And())
-                elif(userinput == "4"):
-                    self.addDevice(Or())
-                elif(userinput == "5"):
-                    devicename = input("Device name: ")
-                    self.addDevice(Output(devicename))
-                elif(userinput == "6"):
-                    print("Canceled")
-                else:
-                    print("Invalid option")
-                print()
-            elif(userinput == '2'):
-                print(
-                    "Device management option is still under development - may not work properly")
-                print()
-                if(len(self.devices) == 0):
-                    print("No devices found")
-                else:
-                    print("MANAGE DEVICE: ")
-                    print("DEVICE ID: ", end="")
-                    userinput = input()
-                    try:
-                        device_id = int(userinput)
-                        for index, device in enumerate(self.devices):
-                            if(device.id == device_id):
-                                device_type = device.getDeviceType()
-                                if(device_type == "Lever"):
-                                    print("1. Set state to 1")
-                                    print("2. Set state to 0")
-                                    print("3. Cancel")
-                                    print("OPTION: ", end="")
-                                    userinput = input()
-                                    if(userinput == "1"):
-                                        device.setState(1)
-                                    elif(userinput == "2"):
-                                        device.setState(0)
-                                    elif(userinput == "3"):
-                                        print("Canceled")
-                                    else:
-                                        print("Invalid input")
-                                elif(device_type == "Not"):
-                                    print("1. Attach device")
-                                    print("2. Cancel")
-                                    print("OPTION: ", end="")
-                                    userinput = input()
-                                    if(userinput == "1"):
-                                        print("ID: ", end="")
-                                        userinput = input()
-                                        device.attached_id = int(userinput)
-                                    elif(userinput == "2"):
-                                        print("Canceled")
-                                elif(device_type == "And"):
-                                    print("1. Attach device to A")
-                                    print("2. Attach device to B")
-                                    print("3. Cancel")
-                                    print("OPTION: ", end="")
-                                    userinput = input()
-                                    if(userinput == "1"):
-                                        print("ID: ", end="")
-                                        userinput = input()
-                                        device.a_attached_id = int(userinput)
-                                    if(userinput == "2"):
-                                        print("ID: ", end="")
-                                        userinput = input()
-                                        device.b_attached_id = int(userinput)
-                                    elif(userinput == "3"):
-                                        print("Canceled")
-                                elif(device_type == "Or"):
-                                    print("1. Attach device to A")
-                                    print("2. Attach device to B")
-                                    print("3. Cancel")
-                                    print("OPTION: ", end="")
-                                    userinput = input()
-                                    if(userinput == "1"):
-                                        print("ID: ", end="")
-                                        userinput = input()
-                                        device.a_attached_id = int(userinput)
-                                    elif(userinput == "2"):
-                                        print("ID: ", end="")
-                                        userinput = input()
-                                        device.b_attached_id = int(userinput)
-                                    elif(userinput == "3"):
-                                        print("Canceled")
-                                elif(device_type == "Output"):
-                                    print("1. Attach device")
-                                    print("2. Rename")
-                                    print("3. Cancel")
-                                    print("OPTION: ", end="")
-                                    userinput = input()
-                                    if(userinput == "1"):
-                                        print("ID: ", end="")
-                                        userinput = input()
-                                        device.attached_id = int(userinput)
-                                    elif(userinput == "2"):
-                                        print("New name: ", end="")
-                                        userinput = input()
-                                        device.rename(userinput)
-                                    elif(userinput == "3"):
-                                        print("Canceled")
-                                break
-                            if(index == len(self.devices)-1):
-                                print("Device not found")
-                    except:
-                        print("Invalid input")
-            elif(userinput == '3'):
-                print()
-                print("DEVICES:")
-                if(len(self.devices) == 0):
-                    print("No devices found")
-                else:
-                    for device in self.devices:
-                        if(device.getDeviceType() == "Output"):
-                            print(str(device.id) + ": " +
-                                  device.getDeviceType() + " ["+device.name+"]")
-                        else:
-                            print(str(device.id) + ": " +
-                                  device.getDeviceType())
-                print()
-            elif(userinput == '4'):
-                for device in self.devices:
-                    if(device.getDeviceType() == "Output"):
-                        device.setState(self.getOutput(device.attached_id))
-                        device.output()
-            elif(userinput == '5'):
-                print("Shutting down")
-                exit()
-            else:
-                print("Invalid option")
-
-    def addDevice(self, device):
-        device.setId(self.id)
-        self.devices.append(device)
-        self.id += 1
-
-
 class Lever:
     'Lever/logic input'
 
     def __init__(self):
         self.state = 0
-        self.deviceType = "Lever"
+        self.device_type = "Lever"
         self.id = 0
 
     def output(self):
         print("Lever: " + str(self.state))
         return self.state
 
-    def setState(self, data):
+    def set_state(self, data):
         self.state = data
         print("New lever state: " + str(self.state))
 
-    def getDeviceType(self):
-        return self.deviceType
+    def get_device_type(self):
+        return self.device_type
 
-    def setId(self, id):
+    def set_id(self, id):
         self.id = id
 
 
@@ -216,14 +26,14 @@ class Not:
 
     def __init__(self):
         self.attached_id = -1
-        self.deviceType = "Not"
+        self.device_type = "Not"
         self.state = 0
         self.id = 0
 
-    def getDeviceType(self):
-        return self.deviceType
+    def get_device_type(self):
+        return self.device_type
 
-    def setState(self, data):
+    def set_state(self, data):
         self.state = data
 
     def output(self):
@@ -234,7 +44,7 @@ class Not:
             print("Not: " + str(1))
             return 1
 
-    def setId(self, id):
+    def set_id(self, id):
         self.id = id
 
 
@@ -246,7 +56,7 @@ class And:
         self.b_attached_id = -1
         self.a = 0
         self.b = 0
-        self.deviceType = "And"
+        self.device_type = "And"
         self.id = 0
 
     def output(self):
@@ -257,18 +67,18 @@ class And:
             print("And: " + str(0))
             return 0
 
-    def setA(self, data):
+    def set_a(self, data):
         self.a = data
         print("And A new state: " + str(self.a))
 
-    def setB(self, data):
+    def set_b(self, data):
         self.b = data
         print("And B new state: " + str(self.b))
 
-    def getDeviceType(self):
-        return self.deviceType
+    def get_device_type(self):
+        return self.device_type
 
-    def setId(self, id):
+    def set_id(self, id):
         self.id = id
 
 
@@ -280,7 +90,7 @@ class Or:
         self.b = 0
         self.a_attached_id = -1
         self.b_attached_id = -1
-        self.deviceType = "Or"
+        self.device_type = "Or"
         self.id = 0
 
     def output(self):
@@ -291,18 +101,18 @@ class Or:
             print("Or: " + str(0))
             return 0
 
-    def setA(self, data):
+    def set_a(self, data):
         self.a = data
         print("Or A new state: " + str(self.a))
 
-    def setB(self, data):
+    def set_b(self, data):
         self.b = data
         print("Or B new state: " + str(self.b))
 
-    def getDeviceType(self):
-        return self.deviceType
+    def get_device_type(self):
+        return self.device_type
 
-    def setId(self, id):
+    def set_id(self, id):
         self.id = id
 
 
@@ -312,11 +122,11 @@ class Output:
     def __init__(self, name):
         self.attached_id = -1
         self.name = name
-        self.deviceType = "Output"
+        self.device_type = "Output"
         self.id = 0
         self.state = 0
 
-    def setState(self, state):
+    def set_state(self, state):
         self.state = state
 
     def rename(self, new_name):
@@ -326,12 +136,186 @@ class Output:
         print("Output [" + self.name + "]: " + str(self.state))
         return self.state
 
-    def getDeviceType(self):
-        return self.deviceType
+    def get_device_type(self):
+        return self.device_type
 
-    def setId(self, id):
+    def set_id(self, id):
         self.id = id
 
 
-dm = DeviceManager()
-dm.start()
+class DeviceManager:
+    'Device/circuit manager'
+
+    def __init__(self):
+        print("Device manager created")
+        self.devices = []
+        self.id = 0
+
+    def get_output(self, id):
+        device_type = ""
+        for device in self.devices:
+            if(device.id == id):
+                device_type = device.get_device_type()
+                if(device_type == "Lever"):
+                    return device.output()
+                elif(device_type == "Not"):
+                    device.set_state(self.get_output(device.attached_id))
+                    return device.output()
+                elif(device_type == "And"):
+                    device.set_a(self.get_output(device.a_attached_id))
+                    device.set_b(self.get_output(device.b_attached_id))
+                    return device.output()
+                elif(device_type == "Or"):
+                    device.set_a(self.get_output(device.a_attached_id))
+                    device.set_b(self.get_output(device.b_attached_id))
+                    return device.output()
+        return 0
+
+    def add_device(self, device):
+        device.set_id(self.id)
+        self.devices.append(device)
+        self.id += 1
+
+    def start(self):
+        print("Device manager started")
+        while(True):
+            print("", "1. Add device", "2. Manage device", "3. Show devices",
+                  "4. Run circuit", "5. Quit", "OPTION: ", sep="\n", end="")
+            user_input = input()
+            if(user_input == '1'):
+                print("", "ADD DEVICE:", "1. Input", "2. Not gate", "3. And gate",
+                      "4. Or gate", "5. Output", "6. Cancel", "OPTION: ", sep="\n", end="")
+                user_input = input()
+                if(user_input == "1"):
+                    self.add_device(Lever())
+                elif(user_input == "2"):
+                    self.add_device(Not())
+                elif(user_input == "3"):
+                    self.add_device(And())
+                elif(user_input == "4"):
+                    self.add_device(Or())
+                elif(user_input == "5"):
+                    devic_ename = input("Device name: ")
+                    self.add_device(Output(device_name))
+                elif(user_input == "6"):
+                    print("Canceled")
+                else:
+                    print("Invalid option")
+                print()
+            elif(user_input == '2'):
+                print()
+                if(len(self.devices) == 0):
+                    print("No devices found")
+                else:
+                    print("MANAGE DEVICE: ",
+                          "DEVICE ID: ", sep="\n", end="")
+                    user_input = input()
+                    try:
+                        device_id = int(user_input)
+                        for index, device in enumerate(self.devices):
+                            if(device.id == device_id):
+                                device_type = device.get_device_type()
+                                if(device_type == "Lever"):
+                                    print("1. Set state to 1", "2. Set state to 0",
+                                          "3. Cancel", "OPTION: ", sep="\n", end="")
+                                    user_input = input()
+                                    if(user_input == "1"):
+                                        device.set_state(1)
+                                    elif(user_input == "2"):
+                                        device.set_state(0)
+                                    elif(user_input == "3"):
+                                        print("Canceled")
+                                    else:
+                                        print("Invalid input")
+                                elif(device_type == "Not"):
+                                    print("1. Attach device", "2. Cancel",
+                                          "OPTION: ", sep="\n", end="")
+                                    user_input = input()
+                                    if(user_input == "1"):
+                                        print("ID: ", end="")
+                                        user_input = input()
+                                        device.attached_id = int(
+                                            user_input)
+                                    elif(user_input == "2"):
+                                        print("Canceled")
+                                elif(device_type == "And"):
+                                    print("1. Attach device to A", "2. Attach device to B",
+                                          "3. Cancel", "OPTION: ", sep="\n", end="")
+                                    user_input = input()
+                                    if(user_input == "1"):
+                                        print("ID: ", end="")
+                                        user_input = input()
+                                        device.a_attached_id = int(
+                                            user_input)
+                                    if(user_input == "2"):
+                                        print("ID: ", end="")
+                                        user_input = input()
+                                        device.b_attached_id = int(
+                                            user_input)
+                                    elif(user_input == "3"):
+                                        print("Canceled")
+                                elif(device_type == "Or"):
+                                    print("1. Attach device to A", "2. Attach device to B",
+                                          "3. Cancel", "OPTION: ", sep="\n", end="")
+                                    user_input = input()
+                                    if(user_input == "1"):
+                                        print("ID: ", end="")
+                                        user_input = input()
+                                        device.a_attached_id = int(
+                                            user_input)
+                                    elif(user_input == "2"):
+                                        print("ID: ", end="")
+                                        user_input = input()
+                                        device.b_attached_id = int(
+                                            user_input)
+                                    elif(user_input == "3"):
+                                        print("Canceled")
+                                elif(device_type == "Output"):
+                                    print("1. Attach device", "2. Rename",
+                                          "3. Cancel", "OPTION: ", sep="\n", end="")
+                                    user_input = input()
+                                    if(user_input == "1"):
+                                        print("ID: ", end="")
+                                        user_input = input()
+                                        device.attached_id = int(
+                                            user_input)
+                                    elif(user_input == "2"):
+                                        print("New name: ", end="")
+                                        user_input = input()
+                                        device.rename(user_input)
+                                    elif(user_input == "3"):
+                                        print("Canceled")
+                                break
+                            if(index == len(self.devices)-1):
+                                print("Device not found")
+                    except:
+                        print("Invalid input")
+            elif(user_input == '3'):
+                print()
+                print("DEVICES:")
+                if(len(self.devices) == 0):
+                    print("No devices found")
+                else:
+                    for device in self.devices:
+                        if(device.get_device_type() == "Output"):
+                            print(str(device.id) + ": " +
+                                  device.get_device_type() + " ["+device.name+"]")
+                        else:
+                            print(str(device.id) + ": " +
+                                  device.get_device_type())
+                print()
+            elif(user_input == '4'):
+                for device in self.devices:
+                    if(device.get_device_type() == "Output"):
+                        device.set_state(
+                            self.get_output(device.attached_id))
+                        device.output()
+            elif(user_input == '5'):
+                print("Shutting down")
+                exit()
+            else:
+                print("Invalid option")
+
+
+DM = DeviceManager()
+DM.start()
