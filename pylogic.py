@@ -195,7 +195,7 @@ class DeviceManager:
                 elif(user_input == "4"):
                     self.add_device(Or())
                 elif(user_input == "5"):
-                    devic_ename = input("Device name: ")
+                    device_name = input("Device name: ")
                     self.add_device(Output(device_name))
                 elif(user_input == "6"):
                     print("Canceled")
