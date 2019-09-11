@@ -15,3 +15,9 @@ DM = DeviceManager()
 DM.start()
 ```
 
+### TO-DO
+ - Graphical interface
+ - Threads
+ - Clocks and flip-flops
+ - Simulation and live input changes
+
