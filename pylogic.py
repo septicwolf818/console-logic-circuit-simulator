@@ -82,6 +82,40 @@ class And:
         self.id = id
 
 
+class Nand:
+    'Nand logic gate'
+
+    def __init__(self):
+        self.a_attached_id = -1
+        self.b_attached_id = -1
+        self.a = 0
+        self.b = 0
+        self.device_type = "Nand"
+        self.id = 0
+
+    def output(self):
+        if(self.a == 1 and self.b == 1):
+            print("And: " + str(0))
+            return 0
+        else:
+            print("And: " + str(1))
+            return 1
+
+    def set_a(self, data):
+        self.a = data
+        print("And A new state: " + str(self.a))
+
+    def set_b(self, data):
+        self.b = data
+        print("And B new state: " + str(self.b))
+
+    def get_device_type(self):
+        return self.device_type
+
+    def set_id(self, id):
+        self.id = id
+
+
 class Or:
     'Or logic gate'
 
@@ -165,6 +199,10 @@ class DeviceManager:
                     device.set_a(self.get_output(device.a_attached_id))
                     device.set_b(self.get_output(device.b_attached_id))
                     return device.output()
+                elif(device_type == "Nand"):
+                    device.set_a(self.get_output(device.a_attached_id))
+                    device.set_b(self.get_output(device.b_attached_id))
+                    return device.output()
                 elif(device_type == "Or"):
                     device.set_a(self.get_output(device.a_attached_id))
                     device.set_b(self.get_output(device.b_attached_id))
@@ -183,8 +221,8 @@ class DeviceManager:
                   "4. Run circuit", "5. Quit", "OPTION: ", sep="\n", end="")
             user_input = input()
             if(user_input == '1'):
-                print("", "ADD DEVICE:", "1. Input", "2. Not gate", "3. And gate",
-                      "4. Or gate", "5. Output", "6. Cancel", "OPTION: ", sep="\n", end="")
+                print("", "ADD DEVICE:", "1. Input", "2. Not gate", "3. And gate", "4. Nand gate",
+                      "5. Or gate", "6. Output", "7. Cancel", "OPTION: ", sep="\n", end="")
                 user_input = input()
                 if(user_input == "1"):
                     self.add_device(Lever())
@@ -193,8 +231,10 @@ class DeviceManager:
                 elif(user_input == "3"):
                     self.add_device(And())
                 elif(user_input == "4"):
-                    self.add_device(Or())
+                    self.add_device(Nand())
                 elif(user_input == "5"):
+                    self.add_device(Or())
+                elif(user_input == "6"):
                     device_name = input("Device name: ")
                     self.add_device(Output(device_name))
                 elif(user_input == "6"):
@@ -239,6 +279,22 @@ class DeviceManager:
                                     elif(user_input == "2"):
                                         print("Canceled")
                                 elif(device_type == "And"):
+                                    print("1. Attach device to A", "2. Attach device to B",
+                                          "3. Cancel", "OPTION: ", sep="\n", end="")
+                                    user_input = input()
+                                    if(user_input == "1"):
+                                        print("ID: ", end="")
+                                        user_input = input()
+                                        device.a_attached_id = int(
+                                            user_input)
+                                    if(user_input == "2"):
+                                        print("ID: ", end="")
+                                        user_input = input()
+                                        device.b_attached_id = int(
+                                            user_input)
+                                    elif(user_input == "3"):
+                                        print("Canceled")
+                                elif(device_type == "Na`nd"):
                                     print("1. Attach device to A", "2. Attach device to B",
                                           "3. Cancel", "OPTION: ", sep="\n", end="")
                                     user_input = input()
