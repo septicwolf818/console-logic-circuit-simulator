@@ -95,19 +95,19 @@ class Nand:
 
     def output(self):
         if(self.a == 1 and self.b == 1):
-            print("And: " + str(0))
+            print("Nand: " + str(0))
             return 0
         else:
-            print("And: " + str(1))
+            print("Nand: " + str(1))
             return 1
 
     def set_a(self, data):
         self.a = data
-        print("And A new state: " + str(self.a))
+        print("Nand A new state: " + str(self.a))
 
     def set_b(self, data):
         self.b = data
-        print("And B new state: " + str(self.b))
+        print("Nand B new state: " + str(self.b))
 
     def get_device_type(self):
         return self.device_type
@@ -294,7 +294,7 @@ class DeviceManager:
                                             user_input)
                                     elif(user_input == "3"):
                                         print("Canceled")
-                                elif(device_type == "Na`nd"):
+                                elif(device_type == "Nand"):
                                     print("1. Attach device to A", "2. Attach device to B",
                                           "3. Cancel", "OPTION: ", sep="\n", end="")
                                     user_input = input()
