@@ -23,8 +23,15 @@ This project requires Python >= 3.7 and the following Python packages:
 To install these packages, run:
 
 ```sh
-pip install tkinter Pillow graphviz
+pip install tk pillow graphviz
 ```
+
+or use [requirements.txt](requirements.txt)
+
+```sh
+pip install -r requirements.txt
+```
+
 
 Additionally, you need to install Graphviz on your system. On Ubuntu, you can install it with:
 
