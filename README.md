@@ -107,4 +107,4 @@ A complex circuit with multiple logic gates and outputs.
 
 ## Screenshot
 
-![Ubuntu Screenshot of Gui mode](pylogic_ubuntu.png)
+![Ubuntu Screenshot of Gui mode](img/pylogic_ubuntu.png)
