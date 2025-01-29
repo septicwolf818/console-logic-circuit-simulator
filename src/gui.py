@@ -75,6 +75,7 @@ class DeviceManagerGUI:
         self.status_bar.grid(row=1, column=0, sticky=(tk.W, tk.E))
 
         self.root.bind("<Configure>", self.on_resize)
+        self.root.protocol("WM_DELETE_WINDOW", self.exit_gui)
 
     def set_status(self, message: str):
         self.status_bar.config(text=message)
@@ -290,6 +291,7 @@ class DeviceManagerGUI:
 
     def exit_gui(self):
         self.root.quit()
+        self.root.destroy()
 
     def run(self):
         self.update_tree()
