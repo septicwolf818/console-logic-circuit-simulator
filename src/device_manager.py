@@ -128,7 +128,7 @@ class DeviceManager:
     def start(self):
         print("Device manager started")
         while True:
-            print("\n1. Add device\n2. Manage device\n3. Show devices\n4. Run circuit\n5. Save state\n6. Load state\n7. Render graph\n8. Start GUI\n9. Create new device\n10. Quit\nOPTION: ", end="")
+            print("\n1. Add device\n2. Manage device\n3. Show devices\n4. Run circuit\n5. Save state\n6. Load state\n7. Render graph\n8. Start GUI\n9. Quit\nOPTION: ", end="")
             user_input = input().strip()
             if (user_input == '1'):
                 self.add_device_menu()
@@ -148,17 +148,10 @@ class DeviceManager:
             elif (user_input == '8'):
                 self.start_gui()
             elif (user_input == '9'):
-                self.create_new_device()
-            elif (user_input == '10'):
                 print("Shutting down")
                 break
             else:
                 print("Invalid option")
-
-    def create_new_device(self):
-        self.device_name = input("Enter new device name: ").strip()
-        print(f"Creating new device: {self.device_name}")
-        self.start_gui()
 
     def start_gui(self):
         from gui import DeviceManagerGUI
