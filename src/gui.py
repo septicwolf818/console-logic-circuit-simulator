@@ -100,8 +100,9 @@ class DeviceManagerGUI:
     def confirm_add_device(self):
         device_type = self.device_type.get()
         if (device_type == "Lever"):
-            device_name = tk.simpledialog.askstring("Lever Device", "Enter device name:")
-            self.manager.add_device(Lever(device_name))
+            if device_name:
+                device_name = tk.simpledialog.askstring("Lever Device", "Enter device name:")
+                self.manager.add_device(Lever(device_name))
         elif (device_type == "Not"):
             self.manager.add_device(Not())
         elif (device_type == "And"):
