@@ -1,0 +1,8 @@
+[
+    {"device_type": "Lever", "id": 0, "state": 1, "name": "A"},
+    {"device_type": "Lever", "id": 1, "state": 0, "name": "B"},
+    {"device_type": "Xor", "id": 2, "a_attached_id": 0, "b_attached_id": 1, "a": 1, "b": 0},
+    {"device_type": "And", "id": 3, "a_attached_id": 0, "b_attached_id": 1, "a": 1, "b": 0},
+    {"device_type": "Output", "id": 4, "attached_id": 2, "name": "Sum", "state": 1},
+    {"device_type": "Output", "id": 5, "attached_id": 3, "name": "Carry", "state": 1}
+]

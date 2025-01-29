@@ -1,0 +1,8 @@
+[
+    {"device_type": "Lever", "id": 0, "state": 1, "name": "Input A"},
+    {"device_type": "Lever", "id": 1, "state": 0, "name": "Input B"},
+    {"device_type": "And", "id": 2, "a_attached_id": 0, "b_attached_id": 1, "a": 1, "b": 0},
+    {"device_type": "Not", "id": 3, "attached_id": 2, "state": 0},
+    {"device_type": "Or", "id": 4, "a_attached_id": 0, "b_attached_id": 3, "a": 1, "b": 1},
+    {"device_type": "Output", "id": 5, "attached_id": 4, "name": "Complex Output", "state": 1}
+]
