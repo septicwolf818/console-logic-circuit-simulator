@@ -1,23 +1,29 @@
 # Console Logic Circuit Simulator
 
-Terminal-based logic circuit simulator for learning logic design. Zero external dependencies.
-
-Build circuits with levers (inputs), logic gates (Buffer, Not, And, Nand, Or, Nor, Xor, Xnor), and outputs. Run them interactively, generate truth tables, validate connections, and save/load designs.
-
-## Quick start
+A terminal-based logic circuit simulator. Design combinational circuits, run them interactively, and generate truth tables.
 
 ```sh
-python -m pylogic
-# or
-python pylogic.py
+python -m pylogic           # start the simulator
+python -m pylogic --help    # available options
 ```
 
-Requires Python 3.7+. No pip install needed.
+Python 3.7+. No external dependencies.
 
-## Examples
+## How it works
+
+The simulator is a REPL menu. Add devices (levers for inputs, gates for logic, outputs for results), wire them together by ID, then run the circuit or generate a truth table. The app lists all available device types when you choose "Add device" — no need to memorise them.
+
+## Example circuits
+
+Pre-built circuits are in `examples/`. Load one from the REPL (option 9) or via the command line:
 
 ```sh
-python -c "from pylogic import DeviceManager; DeviceManager().load_state_from_file('examples/half_adder.clcs').truth_table()"
+python -c "
+from pylogic import DeviceManager
+dm = DeviceManager()
+dm.load_state_from_file('examples/half_adder.clcs')
+dm.truth_table()
+"
 ```
 
-Circuit files (`examples/*.clcs`) include: not_gate, and_gate, or_gate, xor_gate, half_adder, full_adder.
+Explore them: `ls examples/`
