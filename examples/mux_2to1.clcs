@@ -1,0 +1,57 @@
+[
+  {
+    "device_type": "Lever",
+    "id": 0,
+    "state": 0,
+    "name": "A"
+  },
+  {
+    "device_type": "Lever",
+    "id": 1,
+    "state": 0,
+    "name": "B"
+  },
+  {
+    "device_type": "Lever",
+    "id": 2,
+    "state": 0,
+    "name": "S"
+  },
+  {
+    "device_type": "Not",
+    "id": 3,
+    "attached_id": 2,
+    "state": 0
+  },
+  {
+    "device_type": "And",
+    "id": 4,
+    "a_attached_id": 0,
+    "b_attached_id": 3,
+    "a": 0,
+    "b": 0
+  },
+  {
+    "device_type": "And",
+    "id": 5,
+    "a_attached_id": 1,
+    "b_attached_id": 2,
+    "a": 0,
+    "b": 0
+  },
+  {
+    "device_type": "Or",
+    "id": 6,
+    "a_attached_id": 4,
+    "b_attached_id": 5,
+    "a": 0,
+    "b": 0
+  },
+  {
+    "device_type": "Output",
+    "id": 7,
+    "attached_id": 6,
+    "name": "Y",
+    "state": 0
+  }
+]
