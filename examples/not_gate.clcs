@@ -1,0 +1,21 @@
+[
+    {
+        "device_type": "Lever",
+        "id": 0,
+        "state": 0,
+        "name": "In"
+    },
+    {
+        "device_type": "Not",
+        "id": 1,
+        "attached_id": 0,
+        "state": 0
+    },
+    {
+        "device_type": "Output",
+        "id": 2,
+        "attached_id": 1,
+        "name": "Out",
+        "state": 0
+    }
+]
