@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "pylogic"
+version = "1.0.0"
+description = "Console logic circuit simulator"
+requires-python = ">=3.7"
+
+[project.scripts]
+pylogic = "pylogic.__main__:main"
