@@ -1,0 +1,86 @@
+[
+  {
+    "device_type": "Lever",
+    "id": 0,
+    "state": 0,
+    "name": "A"
+  },
+  {
+    "device_type": "Lever",
+    "id": 1,
+    "state": 0,
+    "name": "B"
+  },
+  {
+    "device_type": "Not",
+    "id": 2,
+    "attached_id": 0,
+    "state": 0
+  },
+  {
+    "device_type": "Not",
+    "id": 3,
+    "attached_id": 1,
+    "state": 0
+  },
+  {
+    "device_type": "And",
+    "id": 4,
+    "a_attached_id": 2,
+    "b_attached_id": 3,
+    "a": 0,
+    "b": 0
+  },
+  {
+    "device_type": "And",
+    "id": 5,
+    "a_attached_id": 2,
+    "b_attached_id": 1,
+    "a": 0,
+    "b": 0
+  },
+  {
+    "device_type": "And",
+    "id": 6,
+    "a_attached_id": 0,
+    "b_attached_id": 3,
+    "a": 0,
+    "b": 0
+  },
+  {
+    "device_type": "And",
+    "id": 7,
+    "a_attached_id": 0,
+    "b_attached_id": 1,
+    "a": 0,
+    "b": 0
+  },
+  {
+    "device_type": "Output",
+    "id": 8,
+    "attached_id": 4,
+    "name": "Y0",
+    "state": 0
+  },
+  {
+    "device_type": "Output",
+    "id": 9,
+    "attached_id": 5,
+    "name": "Y1",
+    "state": 0
+  },
+  {
+    "device_type": "Output",
+    "id": 10,
+    "attached_id": 6,
+    "name": "Y2",
+    "state": 0
+  },
+  {
+    "device_type": "Output",
+    "id": 11,
+    "attached_id": 7,
+    "name": "Y3",
+    "state": 0
+  }
+]
